@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: "/dashboard",
-    component: () => import("../layouts/NoLayout.vue"),
+    component: () => import("../layouts/MainLayout.vue"),
     children: [
       // { path: '', component: () => import('components/landing/dashboard.vue'), beforeEnter: requireAuth }
     ]

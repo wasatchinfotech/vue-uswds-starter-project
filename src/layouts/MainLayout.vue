@@ -1,31 +1,27 @@
 <template>
   <div class="Site">
     <AppTopBanner></AppTopBanner>
-    <div class="text-center">
-      <div class="usa-navbar">
-        <div class="usa-logo" id="basic-logo">
-          <router-link to="/">
-            <img src="../assets/uswds-icon-color.svg" alt="USWDS-Icon" class="width-10" />
-          </router-link>
-        </div>
-        <button class="usa-menu-btn">Menu</button>
-      </div>
-    </div>
+    <HeaderComponent></HeaderComponent>
     <div class="Site-content">
       <router-view />
     </div>
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script>
 import AppTopBanner from "@/shared/components/AppTopBanner.vue";
+import HeaderComponent from "@/shared/components/AppHeader.vue";
+import FooterComponent from "@/shared/components/AppFooter.vue";
 export default {
   data() {
     return {};
   },
   components: {
+    HeaderComponent,
+    FooterComponent,
     AppTopBanner
-  }
+  } 
 };
 </script>
 <style scoped>
