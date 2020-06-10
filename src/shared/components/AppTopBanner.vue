@@ -19,12 +19,13 @@
               class="usa-accordion__button usa-banner__button"
               aria-expanded="false"
               aria-controls="gov-banner"
+              @click="expandBanner"
             >
               <span class="usa-banner__button-text">Here’s how you know</span>
             </button>
           </div>
         </header>
-        <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+        <div class="usa-banner__content usa-accordion__content" id="gov-banner" v-show="isOpen">
           <div class="grid-row grid-gap-lg">
             <div class="usa-banner__guidance tablet:grid-col-6">
               <img
@@ -62,6 +63,15 @@
 <script>
 export default {
   name: "app-top-banner",
-  props: {}
+  data() {
+    return {
+      isOpen: false
+    };
+  },
+  methods: {
+    expandBanner() {
+      this.isOpen = !this.isOpen;
+    }
+  } 
 };
 </script> 
