@@ -1,24 +1,27 @@
-
-
-function requireAuth (to, from, next) {
-  const isUserLoggedIn = !!localStorage.getItem('isAuthenticated')
+/*
+function requireAuth(to, from, next) {
+  const isUserLoggedIn = !!localStorage.getItem("isAuthenticated");
 
   if (!isUserLoggedIn) {
     next({
-      path: '/login',
+      path: "/login",
       query: { redirect: to.fullPath }
-    })
+    });
   } else {
-    next()
+    next();
   }
 }
+*/
 const routes = [
   {
-    path: '/signin',
-    component: () => import('../layouts/NoLayout.vue'),
+    path: "/signin",
+    component: () => import("../layouts/NoLayout.vue"),
     children: [
-      { path: '', component: () => import('../modules/auth/Signin.vue') },
-      { path: 'signout', component: () => import('../modules/auth/Signout.vue') },
+      { path: "", component: () => import("../modules/auth/Signin.vue") },
+      {
+        path: "signout",
+        component: () => import("../modules/auth/Signout.vue")
+      }
       /*
       { path: 'forgot-password', component: () => import('modules/auth/ForgotPassword.vue') },
       { path: 'activate-account', component: () => import('modules/auth/ActivateAccount.vue') },
@@ -28,19 +31,19 @@ const routes = [
     ]
   },
   {
-    path: '/dashboard',
-    component: () => import('../layouts/NoLayout.vue'),
+    path: "/dashboard",
+    component: () => import("../layouts/NoLayout.vue"),
     children: [
-     // { path: '', component: () => import('components/landing/dashboard.vue'), beforeEnter: requireAuth } 
+      // { path: '', component: () => import('components/landing/dashboard.vue'), beforeEnter: requireAuth }
     ]
   }
-]
+];
 
-if (process.env.MODE !== 'ssr') {
+if (process.env.MODE !== "ssr") {
   routes.push({
-    path: '*',
-    component: () => import('../views/Error404.vue')
-  })
+    path: "*",
+    component: () => import("../views/Error404.vue")
+  });
 }
 
-export default routes
+export default routes;

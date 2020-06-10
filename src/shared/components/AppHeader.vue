@@ -6,7 +6,7 @@
         <div class="usa-navbar">
           <div class="usa-logo" id="basic-logo">
             <em class="usa-logo__text">
-              <a href="/" title="Home" aria-label="Home">Project title</a>
+              <a href="/" title="Home" aria-label="Home">USWDS Vue</a>
             </em>
           </div>
           <button class="usa-menu-btn">Menu</button>
@@ -15,16 +15,17 @@
           <button class="usa-nav__close">
             <img src="/assets/img/close.svg" alt="close" />
           </button>
-          <ul class="usa-nav__primary usa-accordion">
+          <ul class="usa-nav__primary usa-accordion" id="header-nav">
             <li class="usa-nav__primary-item">
               <button
                 class="usa-accordion__button usa-nav__link usa-current"
                 aria-expanded="false"
                 aria-controls="basic-nav-section-one"
+                @click="isFirstMenuOpen = true"
               >
                 <span>Current section</span>
               </button>
-              <ul id="basic-nav-section-one" class="usa-nav__submenu">
+              <ul id="basic-nav-section-one" class="usa-nav__submenu" v-show="isFirstMenuOpen">
                 <li class="usa-nav__submenu-item">
                   <a href="#" class>Navigation link</a>
                 </li>
@@ -41,10 +42,11 @@
                 class="usa-accordion__button usa-nav__link"
                 aria-expanded="false"
                 aria-controls="basic-nav-section-two"
+                @click="isSecondMenuOpen=true"
               >
                 <span>Section</span>
               </button>
-              <ul id="basic-nav-section-two" class="usa-nav__submenu">
+              <ul id="basic-nav-section-two" class="usa-nav__submenu" v-show="isSecondMenuOpen">
                 <li class="usa-nav__submenu-item">
                   <a href="#" class>Navigation link</a>
                 </li>
@@ -78,6 +80,11 @@
 <script>
 export default {
   name: "app-header",
-  props: {}
+  data() {
+    return {
+      isFirstMenuOpen: false,
+      isSecondMenuOpen: false
+    };
+  }
 };
-</script> 
+</script>

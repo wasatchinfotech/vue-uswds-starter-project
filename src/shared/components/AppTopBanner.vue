@@ -19,7 +19,7 @@
               class="usa-accordion__button usa-banner__button"
               aria-expanded="false"
               aria-controls="gov-banner"
-              @click="expandBanner"
+              @click="isOpen=true"
             >
               <span class="usa-banner__button-text">Here’s how you know</span>
             </button>
@@ -36,7 +36,9 @@
               <div class="usa-media-block__body">
                 <p>
                   <strong>The .gov means it’s official.</strong>
-                  <br />Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you’re on a federal government site.
+                  <br />Federal government websites often end in .gov or .mil.
+                  Before sharing sensitive information, make sure you’re on a
+                  federal government site.
                 </p>
               </div>
             </div>
@@ -50,7 +52,9 @@
                 <p>
                   <strong>The site is secure.</strong>
                   <br />The
-                  <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.
+                  <strong>https://</strong> ensures that you are
+                  connecting to the official website and that any information
+                  you provide is encrypted and transmitted securely.
                 </p>
               </div>
             </div>
@@ -67,11 +71,6 @@ export default {
     return {
       isOpen: false
     };
-  },
-  methods: {
-    expandBanner() {
-      this.isOpen = !this.isOpen;
-    }
-  } 
+  }
 };
-</script> 
+</script>

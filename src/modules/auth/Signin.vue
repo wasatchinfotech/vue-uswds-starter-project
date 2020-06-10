@@ -6,4 +6,4 @@ export default {
   name: "sign-in",
   props: {}
 };
-</script> 
+</script>

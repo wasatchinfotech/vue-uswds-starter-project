@@ -2,7 +2,6 @@
 <script>
 export default {
   name: "dashboard",
-  props: { 
-  }
+  props: {}
 };
-</script> 
+</script>
