@@ -1,5 +1,7 @@
 <template>
-  <div class="grid-container">
+  <div class="grid-container">  
+    <AppMessage v-bind:message="VALIDATION_MESSAGE"></AppMessage>
+
     <form class="usa-form margin-x-auto">
       <div class="grid-row">
         <legend class="usa-legend">Sign In</legend>
@@ -57,8 +59,21 @@
   </div>
 </template>
 <script>
+import AppMessage from "@/shared/components/AppMessage.vue"; 
 export default {
   name: "sign-in",
+  data() {
+    return {
+      VALIDATION_MESSAGE: "Please fix below errors"
+    };
+  },
+  components: {
+    AppMessage 
+  },
+  methods: {
+    showLoading() {},
+    hideLoading() {}
+  },
   props: {}
 };
-</script>
+</script> 
