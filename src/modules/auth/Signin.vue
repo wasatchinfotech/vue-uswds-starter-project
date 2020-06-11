@@ -74,6 +74,11 @@ export default {
     showLoading() {},
     hideLoading() {}
   },
-  props: {}
+  mounted(){
+     this.$store.dispatch('app/loading');
+    setTimeout(() => {
+      this.$store.dispatch('app/loadingComplete');
+    }, 1500);
+  }
 };
 </script> 

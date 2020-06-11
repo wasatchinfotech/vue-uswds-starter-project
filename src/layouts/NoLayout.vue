@@ -1,7 +1,7 @@
 <template>
   <div class="Site">
-    <AppSpinner></AppSpinner>
-    <AppTopBanner></AppTopBanner>
+    <AppSpinner v-show="isLoadingComplete"></AppSpinner>
+    <AppTopBanner></AppTopBanner> 
     <div class="text-center">
       <div class="usa-navbar">
         <div class="usa-logo" id="basic-logo">
@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import AppTopBanner from "@/shared/components/AppTopBanner.vue"; 
+import AppTopBanner from "@/shared/components/AppTopBanner.vue";
 import AppSpinner from "@/shared/components/AppSpinner.vue";
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -29,7 +30,13 @@ export default {
   components: {
     AppTopBanner,
     AppSpinner
-  }
+  },
+  computed: {
+    ...mapState('app',{
+      isLoadingComplete: state => state.isLoading
+    })
+  },
+  mounted() {}
 };
 </script>
 <style scoped>
