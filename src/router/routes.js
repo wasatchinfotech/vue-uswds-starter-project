@@ -1,40 +1,38 @@
-/*
+
 function requireAuth(to, from, next) {
-  const isUserLoggedIn = !!localStorage.getItem("isAuthenticated");
+  const isUserLoggedIn = !!localStorage.getItem("isUserValid");
 
   if (!isUserLoggedIn) {
     next({
-      path: "/login",
+      path: "/signin",
       query: { redirect: to.fullPath }
     });
   } else {
     next();
   }
 }
-*/
+
 const routes = [
   {
     path: "/signin",
     component: () => import("../layouts/NoLayout.vue"),
     children: [
-      { path: "", component: () => import("../modules/auth/Signin.vue") },
+      { path: '', component: () => import("../modules/auth/Signin.vue") },
       {
-        path: "signout",
+        path: 'signout',
         component: () => import("../modules/auth/Signout.vue")
-      }
-      /*
-      { path: 'forgot-password', component: () => import('modules/auth/ForgotPassword.vue') },
-      { path: 'activate-account', component: () => import('modules/auth/ActivateAccount.vue') },
-      { path: 'code-request', component: () => import('modules/auth/CodeRequest.vue') },
-      { path: 'reset-password', component: () => import('modules/auth/ResetPassword.vue') }
-      */
+      },
+      { path: 'forgot-password', component: () => import('../modules/auth/ForgotPassword.vue') },
+      { path: 'register', component: () => import('../modules/auth/Register.vue') },
+      { path: 'forgot-username', component: () => import('../modules/auth/ForgotUsername.vue') },
+      { path: 'reset-password', component: () => import('../modules/auth/ResetPassword.vue') }
     ]
   },
   {
     path: "/dashboard",
     component: () => import("../layouts/MainLayout.vue"),
     children: [
-      // { path: '', component: () => import('components/landing/dashboard.vue'), beforeEnter: requireAuth }
+      { path: '', component: () => import('../modules/dashboard/Dashboard.vue'), beforeEnter: requireAuth }
     ]
   }
 ];

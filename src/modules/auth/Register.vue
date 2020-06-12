@@ -1,9 +1,9 @@
-<template>
-  <div>Dashboard</div>
+<template> 
+<div>Register</div>
 </template>
 <script>
 export default {
-  name: "dashboard",
+  name: "register",
   props: {}
 };
 </script>

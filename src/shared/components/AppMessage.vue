@@ -1,9 +1,26 @@
 <template>
-  <div class="usa-alert" :class="{'usa-alert--error': messageValidator('ERROR')}" role="alert">
-    <div class="usa-alert__body">
-      <h3 class="usa-alert__heading">{{messageTypeVal}}</h3>
-      <p class="usa-alert__text">{{messageHeading}}</p>
-      <p class="usa-alert__text" v-for="msg in messages" v-bind:key="msg">{{msg}}</p>
+  <div>
+    <div
+      class="usa-alert usa-alert--slim"
+      :class="{'usa-alert--error': messageValidator('ERROR')}"
+      role="alert"
+      v-if="alertType=='SLIM'"
+    >
+      <div class="usa-alert__body">
+        <p class="usa-alert__text">{{messageHeading}}</p>
+      </div>
+    </div>
+    <div
+      class="usa-alert"
+      :class="{'usa-alert--error': messageValidator('ERROR')}"
+      role="alert"
+      v-if="alertType!='SLIM'"
+    >
+      <div class="usa-alert__body">
+        <h3 class="usa-alert__heading">{{messageTypeVal}}</h3>
+        <p class="usa-alert__text">{{messageHeading}}</p>
+        <p class="usa-alert__text" v-for="msg in messages" v-bind:key="msg">{{msg}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +42,10 @@ export default {
     messageHeading: {
       type: String,
       default: ""
+    },
+    alertType: {
+      type: String,
+      default: "SLIM"
     }
   },
   methods: {

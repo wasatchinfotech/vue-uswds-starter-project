@@ -1,23 +1,22 @@
 <template>
   <div class="grid-container">
-    <AppMessage
-      v-bind:messageHeading="VALIDATION_MESSAGE"
-      v-show="displayValidationMessage"
-      v-bind:messageTypeVal="messageTypeVal"
-    ></AppMessage>
+    <div class="grid-row">
+      <div class="grid-col-8 grid-offset-2">
+        <AppMessage
+          v-bind:messageHeading="validationMessage"
+          v-show="displayValidationMessage"
+          v-bind:messageTypeVal="messageTypeVal"
+        ></AppMessage>
+      </div>
+    </div>
 
     <form class="usa-form margin-x-auto" @submit="login" novalidate="true">
       <div class="grid-row">
         <legend class="usa-legend">Sign In</legend>
-        <br />
         <div class="width-full">
-          <span>
+          <span class="float-right">
             or
-            <button
-              type="button"
-              class="usa-button usa-button--unstyled"
-              routerLink="/register"
-            >create an account</button>
+            <router-link to="/auth/register">Create Account</router-link>
           </span>
         </div>
 
@@ -48,7 +47,10 @@
         </fieldset>
 
         <fieldset class="usa-fieldset width-full">
-          <div class="usa-form-group" :class="{'usa-form-group--error':passwordError || passwordRegexError}">
+          <div
+            class="usa-form-group"
+            :class="{'usa-form-group--error':passwordError || passwordRegexError}"
+          >
             <label
               class="usa-label"
               :class="{'usa-label--error':passwordError || passwordRegexError}"
@@ -58,7 +60,7 @@
               class="usa-error-message"
               role="alert"
               v-show="passwordError"
-            >Please enter valid password</span> 
+            >Please enter valid password</span>
 
             <span
               class="usa-error-message"
@@ -90,16 +92,16 @@
           <button class="usa-button width-full" type="submit">Sign in</button>
         </div>
         <div class="grid-col">
-          <button type="button" class="usa-button usa-button--unstyled">
-            Forgot
-            username?
-          </button>
+          <router-link
+            class="usa-button usa-button--unstyled"
+            to="/auth/forgot-username"
+          >Forgot username?</router-link>
         </div>
         <div class="grid-col">
-          <button type="button" class="usa-button usa-button--unstyled">
-            Forgot
-            password?
-          </button>
+          <router-link
+            class="usa-button usa-button--unstyled"
+            to="/auth/forgot-password"
+          >Forgot password?</router-link>
         </div>
       </div>
     </form>
@@ -107,21 +109,24 @@
 </template>
 <script>
 import AppMessage from "@/shared/components/AppMessage.vue";
-import { messageType } from "@/shared/enums/messageTypes.js";
+import {
+  alertMessageType,
+  authMessageType
+} from "@/shared/enums/messageTypes.js";
 import { regexmixin } from "@/shared/mixins/regexmixin.js";
 
 export default {
   name: "sign-in",
   data() {
     return {
-      VALIDATION_MESSAGE: "Please correct the following error(s)",
+      validationMessage: "Please correct the following error(s)",
       password: null,
       username: null,
       usernameError: false,
       passwordError: false,
       passwordRegexError: false,
       isFormSubmitted: false,
-      messageTypeVal: messageType.error
+      messageTypeVal: alertMessageType.error
     };
   },
   mixins: [regexmixin],
@@ -157,7 +162,7 @@ export default {
 
       if (!this.password) {
         this.passwordError = true;
-      }else if (!this.validateStrictPassword(this.password)) {
+      } else if (!this.validateStrictPassword(this.password)) {
         this.passwordRegexError = true;
       }
     },
@@ -165,7 +170,32 @@ export default {
       e.preventDefault();
       this.showLoading();
       this.validateForm();
-      this.hideLoading();
+      if (
+        !this.usernameError &&
+        !this.passwordError &&
+        !this.passwordRegexError
+      ) {
+        this.$store
+          .dispatch("authentication/login", {
+            username: this.username,
+            password: this.password
+          })
+          .then(() => {
+            this.$router.replace(this.$route.query.redirect || "/dashboard");
+          })
+          .catch(err => {
+            if (err === authMessageType.credError) {
+              this.usernameError = true;
+              this.passwordError = true;
+              this.validationMessage = "Username and Password does not match";
+            }
+          })
+          .then(() => {
+            this.hideLoading();
+          });
+      } else {
+        this.hideLoading();
+      }
     }
   },
   mounted() {}
