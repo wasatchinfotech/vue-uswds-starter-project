@@ -14,7 +14,7 @@ function requireAuth(to, from, next) {
 
 const routes = [
   {
-    path: "/signin",
+    path: "/auth",
     component: () => import("../layouts/NoLayout.vue"),
     children: [
       { path: '', component: () => import("../modules/auth/Signin.vue") },
