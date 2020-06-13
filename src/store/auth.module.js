@@ -9,7 +9,7 @@ export const auth = {
   actions: {
     login(context, userData) {
       return new Promise((resolve, reject) => {
-        if (userData.username == 'uswds' && userData.password == 'Vue@demo1') {
+        if (userData.username === 'uswds' && userData.password === 'Vue@demo1') {
           context.commit('logUserIn');
           localStorage.setItem('isUserValid', true);
           resolve(userData)

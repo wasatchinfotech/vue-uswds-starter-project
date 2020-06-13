@@ -1,5 +1,4 @@
-<template>
-  <div>
+<template> 
     <section class="usa-banner" aria-label="Official government website">
       <div class="usa-accordion">
         <header class="usa-banner__header">
@@ -61,8 +60,7 @@
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </section> 
 </template>
 <script>
 export default {
