@@ -10,9 +10,17 @@ function requireAuth(to, from, next) {
   } else {
     next();
   }
-}
+} 
 
 const routes = [
+  {
+    path: "/",
+    component: () => import("../layouts/MainLayout.vue"),
+    children: [
+      { path: '', component: () => import('../views/Home.vue') },
+      { path: 'about', component: () => import('../views/About.vue') }
+    ]
+  },
   {
     path: "/auth",
     component: () => import("../layouts/NoLayout.vue"),
@@ -32,8 +40,8 @@ const routes = [
     path: "/dashboard",
     component: () => import("../layouts/DocLayout.vue"),
     children: [
-      { path: '', component: () => import('../modules/dashboard/Dashboard.vue'), beforeEnter: requireAuth }, 
-      { path: 'profile', component: () => import('../modules/dashboard/Profile.vue'), beforeEnter: requireAuth }, 
+      { path: '', component: () => import('../modules/dashboard/Dashboard.vue'), beforeEnter: requireAuth },
+      { path: 'profile', component: () => import('../modules/dashboard/Profile.vue'), beforeEnter: requireAuth },
       { path: 'settings', component: () => import('../modules/dashboard/Settings.vue'), beforeEnter: requireAuth }
     ]
   }

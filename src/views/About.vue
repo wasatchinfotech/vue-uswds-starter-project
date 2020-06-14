@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="grid-container margin-top-3">
+    <div class="display-flex flex-column flex-align-center">
+      <legend class="usa-legend">About Us</legend>
+    </div>
   </div>
 </template>

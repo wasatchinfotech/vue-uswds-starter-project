@@ -48,7 +48,7 @@
               </button>
               <ul id="basic-nav-section-two" class="usa-nav__submenu" v-show="isSecondMenuOpen">
                 <li class="usa-nav__submenu-item">
-                  <a href="#" class>Navigation link</a>
+                  <a href="#/about" class>About Us</a>
                 </li>
                 <li class="usa-nav__submenu-item">
                   <a href="#" class>Navigation link</a>

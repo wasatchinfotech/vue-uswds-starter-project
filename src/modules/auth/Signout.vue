@@ -27,6 +27,14 @@ export default {
   },
   components: {
     AppMessage
+  },
+  methods: {
+    async logUserOut() {
+      await this.$store.dispatch("authentication/logout");
+    }
+  },
+  mounted() {
+    this.logUserOut();
   }
 };
 </script>
