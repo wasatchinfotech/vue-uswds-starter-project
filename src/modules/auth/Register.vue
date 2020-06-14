@@ -27,7 +27,7 @@
           :typeVal="'email'"
           :required="true"
           :errorMessage="'Please enter valid email address'"
-          :idVal="'usernameInput'"
+          :idVal="'registerUsernameInput'"
           ref="emailRef"
         ></AppInputBox>
 
@@ -38,7 +38,7 @@
           :typeVal="'password'"
           :required="true"
           :errorMessage="'Please enter valid password.'"
-          :idVal="'passwordInput'"
+          :idVal="'registerPasswordInput'"
           ref="passwordRef"
         ></AppInputBox>
       </div>

@@ -21,7 +21,7 @@
           :typeVal="'password'"
           :required="true"
           :errorMessage="'Please enter valid password.'"
-          :idVal="'passwordInput'"
+          :idVal="'forgotPasswordInput'"
           ref="passwordRef"
         ></AppInputBox>
       </div>
