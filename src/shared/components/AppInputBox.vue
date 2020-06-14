@@ -29,7 +29,7 @@
           title="Show password"
           href="javascript:void(0);"
           class="usa-show-password"
-          aria-controls="passwordInput"
+          :aria-controls="idVal"
         >Show password</a>
       </p>
     </label>
