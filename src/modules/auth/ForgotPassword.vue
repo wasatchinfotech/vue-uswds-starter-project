@@ -34,8 +34,8 @@
         <div class="grid-col">
           <router-link
             class="usa-button usa-button--unstyled"
-            to="/auth/forgot-password"
-          >Forgot password?</router-link>
+            to="/auth/forgot-username"
+          >Forgot username?</router-link>
         </div>
 
         <div class="grid-col">
