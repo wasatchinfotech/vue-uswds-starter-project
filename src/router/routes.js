@@ -10,7 +10,7 @@ function requireAuth(to, from, next) {
   } else {
     next();
   }
-} 
+}
 
 const routes = [
   {
@@ -44,14 +44,14 @@ const routes = [
       { path: 'profile', component: () => import('../modules/dashboard/Profile.vue'), beforeEnter: requireAuth },
       { path: 'settings', component: () => import('../modules/dashboard/Settings.vue'), beforeEnter: requireAuth }
     ]
+  },
+  {
+    path: "*",
+    component: () => import("../layouts/NoLayout.vue"),
+    children: [
+      { path: '', component: () => import('../views/Error404.vue') }
+    ]
   }
 ];
-
-if (process.env.MODE !== "ssr") {
-  routes.push({
-    path: "*",
-    component: () => import("../views/Error404.vue")
-  });
-}
 
 export default routes;
