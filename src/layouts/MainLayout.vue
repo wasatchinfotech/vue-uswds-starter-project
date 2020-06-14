@@ -21,7 +21,7 @@ export default {
     HeaderComponent,
     FooterComponent,
     AppTopBanner
-  } 
+  }
 };
 </script>
 <style scoped>

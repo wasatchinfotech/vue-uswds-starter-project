@@ -2,13 +2,13 @@
   <div class="grid-container">
     <div class="grid-row">
       <div class="usa-section"></div>
-       <legend class="usa-legend">Dashboard</legend>
+       <legend class="usa-legend">Settings</legend>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: "dashboard",
+  name: "setting",
   props: {}
 };
 </script>
