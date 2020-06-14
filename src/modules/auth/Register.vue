@@ -9,7 +9,10 @@
         ></AppMessage>
       </div>
     </div>
-    <div class="display-flex flex-column flex-align-center margin-top-3" v-show="isRegistrationCompleted">
+    <div
+      class="display-flex flex-column flex-align-center margin-top-3"
+      v-show="isRegistrationCompleted"
+    >
       <router-link class="usa-button usa-button--unstyled" to="/">Go to Home Page</router-link>
     </div>
 
@@ -44,6 +47,13 @@
         <div class="grid-col">
           <button class="usa-button width-full" type="submit" @click="registerUser">Register</button>
         </div>
+
+        <div class="grid-col">
+          <router-link
+            class="usa-button usa-button--unstyled"
+            to="/auth"
+          >Signin</router-link>
+        </div> 
       </div>
     </form>
   </div>
