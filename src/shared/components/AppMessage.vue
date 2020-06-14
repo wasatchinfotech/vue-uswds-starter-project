@@ -2,7 +2,7 @@
   <div>
     <div
       class="usa-alert usa-alert--slim"
-      :class="{'usa-alert--error': messageValidator('ERROR')}"
+      :class="{'usa-alert--error': messageValidator('ERROR'), 'usa-alert--success': messageValidator('SUCCESS')}"
       role="alert"
       v-if="alertType=='SLIM'"
     >
@@ -12,7 +12,7 @@
     </div>
     <div
       class="usa-alert"
-      :class="{'usa-alert--error': messageValidator('ERROR')}"
+      :class="{'usa-alert--error': messageValidator('ERROR'), 'usa-alert--success': messageValidator('SUCCESS')}"
       role="alert"
       v-if="alertType!='SLIM'"
     >

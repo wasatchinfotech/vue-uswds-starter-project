@@ -3,6 +3,12 @@
     <label class="usa-label" :class="{'usa-label--error':inputError}">
       {{label}}
       <span class="usa-error-message" role="alert" v-show="inputError">{{errorMessage}}</span>
+      <span
+        class="usa-error-message"
+        role="alert"
+        v-show="passwordRegexError"
+      >Password should be 8 character long and must contain one Uppercase, one Lowercase, one Number and any one special character [!,@,#,$,&]</span>
+
       <input
         class="usa-input"
         ref="baseInput"
@@ -36,7 +42,8 @@ export default {
   data() {
     return {
       inputVal: null,
-      isInputValid: true
+      isInputValid: true,
+      passwordRegexError: false
     };
   },
   mixins: [regexmixin],
@@ -101,6 +108,7 @@ export default {
   methods: {
     validateInput() {
       this.isInputValid = true;
+      this.passwordRegexError = false;
       if (this.typeVal === "email") {
         if (!this.validateEmail(this.inputVal)) {
           this.isInputValid = false;
@@ -108,6 +116,7 @@ export default {
       } else if (this.typeVal === "password") {
         if (!this.validateStrictPassword(this.inputVal)) {
           this.isInputValid = false;
+          this.passwordRegexError = true;
         }
       }
     },

@@ -9,9 +9,14 @@
         ></AppMessage>
       </div>
     </div>
+    <div class="display-flex flex-column flex-align-center margin-top-3" v-show="isRegistrationCompleted">
+      <router-link class="usa-button usa-button--unstyled" to="/">Go to Home Page</router-link>
+    </div>
 
-    <form class="usa-form margin-x-auto" novalidate="true">
+    <form class="usa-form margin-x-auto" novalidate="true" v-show="!isRegistrationCompleted">
       <div class="grid-row">
+        <legend class="usa-legend">Register</legend>
+
         <AppInputBox
           :label="'Email Address'"
           :ariaRequiredVal="true"
@@ -29,7 +34,7 @@
           :formStatus="isFormSubmitted"
           :typeVal="'password'"
           :required="true"
-          :errorMessage="'Please enter valid password'"
+          :errorMessage="'Please enter valid password.'"
           :idVal="'passwordInput'"
           ref="passwordRef"
         ></AppInputBox>
@@ -37,12 +42,7 @@
 
       <div class="flex-column">
         <div class="grid-col">
-          <button
-            class="usa-button width-full"
-            type="submit"
-            v-on:click="isFormSubmitted=true"
-            @click="registerUser"
-          >Register</button>
+          <button class="usa-button width-full" type="submit" @click="registerUser">Register</button>
         </div>
       </div>
     </form>
@@ -59,7 +59,8 @@ export default {
       validationMessage: "Please correct the following error(s)",
       displayValidationMessage: false,
       messageTypeVal: alertMessageType.error,
-      isFormSubmitted: false
+      isFormSubmitted: false,
+      isRegistrationCompleted: false
     };
   },
   components: {
@@ -67,12 +68,32 @@ export default {
     AppInputBox
   },
   methods: {
+    showLoading() {
+      this.$store.dispatch("app/loading");
+    },
+    hideLoading() {
+      this.$store.dispatch("app/loadingComplete");
+    },
     registerUser: function(e) {
       e.preventDefault();
-      console.log("email ref :: " + this.$refs.emailRef.inputVal);
+      this.showLoading();
+      this.isFormSubmitted = true;
       this.$refs.emailRef.validateInput();
       this.$refs.passwordRef.validateInput();
-      console.log("password ref :: " + this.$refs.passwordRef.isInputBoxValid());
+
+      this.$nextTick(function() {
+        if (
+          this.$refs.emailRef.isInputBoxValid() &&
+          this.$refs.passwordRef.isInputBoxValid()
+        ) {
+          this.hideLoading();
+          this.validationMessage = "Registered Successfully";
+          this.displayValidationMessage = true;
+          this.messageTypeVal = alertMessageType.success;
+          this.isRegistrationCompleted = true;
+        }
+      });
+      this.hideLoading();
     }
   }
 };
