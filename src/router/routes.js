@@ -4,7 +4,7 @@ function requireAuth(to, from, next) {
 
   if (!isUserLoggedIn) {
     next({
-      path: "/signin",
+      path: "/auth",
       query: { redirect: to.fullPath }
     });
   } else {

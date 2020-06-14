@@ -26,8 +26,8 @@
                 <span>Current section</span>
               </button>
               <ul id="basic-nav-section-one" class="usa-nav__submenu" v-show="isFirstMenuOpen">
-                <li class="usa-nav__submenu-item">
-                  <a href="#" class>Navigation link</a>
+                <li class="usa-nav__submenu-item" v-show="isUserLoggedIn">
+                  <a href="#/dashboard" class>Dashboard</a>
                 </li>
                 <li class="usa-nav__submenu-item">
                   <a href="#" class>Navigation link</a>
@@ -59,8 +59,11 @@
               </ul>
             </li>
             <li class="usa-nav__primary-item">
-              <a class="usa-nav__link" href="javascript:void(0)">
-                <span>Simple link</span>
+              <a class="usa-nav__link" href="#/auth" v-show="!isUserLoggedIn">
+                <span>Login</span>
+              </a>
+              <a class="usa-nav__link" href="#/auth/signout" v-show="isUserLoggedIn">
+                <span>Logout</span>
               </a>
             </li>
           </ul>
@@ -85,6 +88,11 @@ export default {
       isFirstMenuOpen: false,
       isSecondMenuOpen: false
     };
+  },
+  computed: {
+    isUserLoggedIn() {
+      return !!localStorage.getItem("isUserValid");
+    }
   }
 };
 </script>
