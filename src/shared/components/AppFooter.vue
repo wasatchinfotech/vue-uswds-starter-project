@@ -1,8 +1,5 @@
 <template>
   <footer class="usa-footer">
-    <div class="grid-container usa-footer__return-to-top">
-      <a :href="currentPath">Return to top</a>
-    </div>
     <div class="usa-footer__primary-section">
       <nav class="usa-footer__nav" aria-label="Footer navigation">
         <ul class="grid-row grid-gap">
@@ -77,13 +74,7 @@
   </footer>
 </template>
 <script>
-import { mapState } from "vuex";
 export default {
-  name: "app-footer", 
-  computed: {
-    ...mapState('app',{
-      currentPath: state => state.currentPath
-    })
-  },
+  name: "app-footer"
 };
 </script>
