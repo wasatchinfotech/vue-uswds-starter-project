@@ -1,6 +1,7 @@
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
+  currentPath : undefined
 }
 export const system = {
   namespaced: true,
@@ -12,6 +13,10 @@ export const system = {
 
     loadingComplete(context) {
       context.commit('markUnloading');
+    },
+
+    recordNextPath(context, path) { 
+      context.commit('markNextPath', path);
     }
   },
   mutations: {
@@ -20,6 +25,9 @@ export const system = {
     },
     markUnloading(state) {
       state.isLoading = false;
+    },
+    markNextPath(state, path) {
+      state.currentPath = path;
     }
   }
 }

@@ -15,14 +15,14 @@
         <legend class="usa-legend">Forgot Password</legend>
 
         <AppInputBox
-          :label="'Password'"
+          :label="'Email Address'"
           :ariaRequiredVal="true"
           :formStatus="isFormSubmitted"
-          :typeVal="'password'"
+          :typeVal="'email'"
           :required="true"
-          :errorMessage="'Please enter valid password.'"
-          :idVal="'forgotPasswordInput'"
-          ref="passwordRef"
+          :errorMessage="'Please enter valid email address'"
+          :idVal="'forgotUsernameInput'"
+          ref="emailRef"
         ></AppInputBox>
       </div>
 
@@ -37,7 +37,12 @@
             to="/auth/forgot-username"
           >Forgot username?</router-link>
         </div>
-
+        <div class="grid-col">
+          <router-link
+            class="usa-button usa-button--unstyled"
+            to="/auth/reset-password"
+          >Reset Password</router-link>
+        </div>
         <div class="grid-col">
           <router-link class="usa-button usa-button--unstyled" to="/auth">Signin</router-link>
         </div>
@@ -74,10 +79,10 @@ export default {
       e.preventDefault();
       this.showLoading();
       this.isFormSubmitted = true;
-      this.$refs.passwordRef.validateInput();
+      this.$refs.emailRef.validateInput();
 
       this.$nextTick(function() {
-        if (this.$refs.passwordRef.isInputBoxValid()) {
+        if (this.$refs.emailRef.isInputBoxValid()) {
           this.hideLoading();
           this.$router.push("/");
         }

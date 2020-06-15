@@ -1,7 +1,7 @@
 <template>
   <footer class="usa-footer">
     <div class="grid-container usa-footer__return-to-top">
-      <a href="#">Return to top</a>
+      <a :href="currentPath">Return to top</a>
     </div>
     <div class="usa-footer__primary-section">
       <nav class="usa-footer__nav" aria-label="Footer navigation">
@@ -77,8 +77,13 @@
   </footer>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
-  name: "app-footer",
-  props: {}
+  name: "app-footer", 
+  computed: {
+    ...mapState('app',{
+      currentPath: state => state.currentPath
+    })
+  },
 };
 </script>
