@@ -13,7 +13,7 @@
         </div>
         <nav aria-label="Primary navigation" class="usa-nav">
           <button class="usa-nav__close">
-            <img src="/assets/img/close.svg" alt="close" />
+            <img src="assets/img/close.svg" alt="close" />
           </button>
           <ul class="usa-nav__primary usa-accordion" id="header-nav">
             <li class="usa-nav__primary-item">

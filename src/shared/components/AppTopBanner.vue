@@ -6,7 +6,7 @@
             <div class="grid-col-auto">
               <img
                 class="usa-banner__header-flag"
-                src="/assets/img/us_flag_small.png"
+                src="assets/img/us_flag_small.png"
                 alt="U.S. flag"
               />
             </div>
@@ -29,7 +29,7 @@
             <div class="usa-banner__guidance tablet:grid-col-6">
               <img
                 class="usa-banner__icon usa-media-block__img"
-                src="/assets/img/icon-dot-gov.svg"
+                src="assets/img/icon-dot-gov.svg"
                 alt="Dot gov"
               />
               <div class="usa-media-block__body">
@@ -44,7 +44,7 @@
             <div class="usa-banner__guidance tablet:grid-col-6">
               <img
                 class="usa-banner__icon usa-media-block__img"
-                src="/assets/img/icon-https.svg"
+                src="assets/img/icon-https.svg"
                 alt="Https"
               />
               <div class="usa-media-block__body">
